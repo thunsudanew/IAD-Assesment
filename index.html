@@ -2,20 +2,165 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ประเมิน IAD</title>
+<title>ระบบประเมิน IAD เด็ก</title>
+
+<style>
+body{font-family:Tahoma;background:#f5f6fa;}
+
+.box{
+  width:420px;
+  margin:40px auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 12px rgba(0,0,0,0.15);
+  text-align:center;
+}
+
+input,select{
+  width:95%;
+  padding:8px;
+  margin:6px 0 12px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.age-box{display:flex;gap:10px;}
+.age-box input{width:45%;}
+
+.risk-title{font-weight:bold;margin-top:15px;}
+.risk-list{text-align:left;line-height:1.8;}
+
+button{
+  border:none;
+  padding:12px 20px;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  margin:8px;
+}
+
+.save{background:#27ae60;color:white;}
+.care{background:#3498db;color:white;}
+
+</style>
+
+<script>
+
+// 🔹 ใส่ URL จาก Apps Script ที่ Deploy แล้ว
+const scriptURL = "https://script.google.com/macros/s/AKfycbytxZLaSWoN2OdDkAH-BNrhKvQi1S6yrHWs1wVydhCph8GI0PjrjKKg0O5ASlsHD7USSA/exec";
+
+function noRiskToggle(){
+  let none=document.getElementById("noneRisk");
+  let others=document.getElementsByClassName("risk");
+
+  for(let i=0;i<others.length;i++){
+    others[i].disabled=none.checked;
+    if(none.checked) others[i].checked=false;
+  }
+}
+
+// ✅ บันทึกข้อมูลลง Google Sheet
+function saveData(){
+
+  let risks=[];
+  document.querySelectorAll(".risk:checked")
+  .forEach(el=>risks.push(el.value));
+
+  if(document.getElementById("noneRisk").checked)
+    risks=["ไม่มี"];
+
+  let data={
+    hn:document.getElementById("hn").value,
+    sex:document.getElementById("sex").value,
+    ageY:document.getElementById("ageY").value,
+    ageM:document.getElementById("ageM").value,
+    history:document.getElementById("history").value,
+    risk:risks.join(", "),
+    level:document.getElementById("skinLevel").value
+  };
+
+  fetch(scriptURL,{
+    method:"POST",
+    body:JSON.stringify(data)
+  })
+  .then(res=>alert("✅ บันทึกข้อมูลเรียบร้อย"))
+  .catch(err=>alert("❌ บันทึกไม่สำเร็จ"));
+}
+
+// ✅ ไปหน้าการดูแลตามระดับ
+function goCare(){
+  let level=document.getElementById("skinLevel").value;
+
+  if(level=="1")
+    window.location.href="care_level1.html";
+  else if(level=="2")
+    window.location.href="care_level2.html";
+  else if(level=="3")
+    window.location.href="care_level3.html";
+}
+
+</script>
+
 </head>
 
-<body style="font-family:Tahoma; text-align:center; background:#f8fbff;">
+<body>
 
-<h1>🧴 ระบบประเมิน IAD</h1>
-<p>Incontinence-Associated Dermatitis</p>
+<div class="box">
 
-<a href="risk.html">
-<button style="width:80%;height:80px;font-size:24px;">
-🩹 เริ่มประเมิน IAD
-</button>
-</a>
+<h1>👶 ระบบประเมิน IAD เด็ก</h1>
+
+HN:<br>
+<input id="hn" type="text">
+
+เพศ:<br>
+<select id="sex">
+  <option>ชาย</option>
+  <option>หญิง</option>
+</select>
+
+อายุ:<br>
+<div class="age-box">
+  <input id="ageY" type="number" placeholder="ปี">
+  <input id="ageM" type="number" placeholder="เดือน">
+</div>
+
+ประวัติ IAD:<br>
+<select id="history">
+  <option>ไม่เคย</option>
+  <option>เคย</option>
+</select>
+
+<div class="risk-title">⚠️ ปัจจัยเสี่ยง</div>
+
+<div class="risk-list">
+
+<label><input type="checkbox" id="noneRisk" onclick="noRiskToggle()"> ไม่มี</label><br>
+
+<label><input type="checkbox" class="risk" value="แผล/ผิวหนังอักเสบ"> แผล/ผิวหนังอักเสบ</label><br>
+<label><input type="checkbox" class="risk" value="อุจจาระเหลว"> อุจจาระเหลว</label><br>
+<label><input type="checkbox" class="risk" value="ถ่าย > 3 ครั้งใน 8 ชม."> ถ่าย > 3 ครั้งใน 8 ชม.</label><br>
+<label><input type="checkbox" class="risk" value="อุจจาระเป็นน้ำ"> อุจจาระเป็นน้ำ</label><br>
+<label><input type="checkbox" class="risk" value="ควบคุมการขับถ่ายไม่ได้"> ควบคุมการขับถ่ายไม่ได้</label><br>
+<label><input type="checkbox" class="risk" value="เปียกชื้นทุก ≤ 2 ชม."> เปียกชื้นทุก ≤ 2 ชม.</label>
+
+</div>
+
+<h3>🩹 ระดับผิวหนัง</h3>
+
+<select id="skinLevel">
+  <option value="1">ระดับ 1 รอยแดง</option>
+  <option value="2">ระดับ 2 มีรอยถลอก</option>
+  <option value="3">ระดับ 3 รุนแรง</option>
+</select>
+
+<br>
+
+<button class="save" onclick="saveData()">💾 บันทึกข้อมูล</button>
+
+<button class="care" onclick="goCare()">➡️ ไปดูการดูแล</button>
+
+</div>
 
 </body>
 </html>
