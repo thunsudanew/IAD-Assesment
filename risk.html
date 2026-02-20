@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ปัจจัยเสี่ยง IAD</title>
+</head>
+
+<body style="font-family:Tahoma; padding:20px;">
+
+<h1>⚠️ ประเมินปัจจัยเสี่ยง IAD</h1>
+<p>เลือกข้อที่มี</p>
+
+<!-- ตัวเลือก: ไม่มี -->
+<label>
+<input type="checkbox" id="none" onclick="onlyNone()">
+ไม่มีปัจจัยเสี่ยง
+</label>
+
+<hr>
+
+<label><input type="checkbox" class="risk"> 1. มีประวัติผิวหนังอักเสบจากการสัมผัสสิ่งขับถ่าย/มีแผลถลอก</label><br><br>
+
+<label><input type="checkbox" class="risk"> 2. อุจจาระเหลว</label><br><br>
+
+<label><input type="checkbox" class="risk"> 3. อุจจาระมากกว่า 3 ครั้งใน 8 ชั่วโมง</label><br><br>
+
+<label><input type="checkbox" class="risk"> 4. อุจจาระเป็นน้ำ เหลว ไม่เป็นก้อน (กรณีใส่ผ้าอ้อมสำเร็จรูป)</label><br><br>
+
+<label><input type="checkbox" class="risk"> 5. ควบคุมการขับถ่ายปัสสาวะ/อุจจาระไม่ได้</label><br><br>
+
+<label><input type="checkbox" class="risk"> 6. ตรวจพบความเปียกชื้นจากอุจจาระ/ปัสสาวะอย่างน้อยทุก 2 ชั่วโมง</label><br><br>
+
+<br>
+
+<button onclick="checkRisk()" style="font-size:20px;">ถัดไป</button>
+
+<script>
+
+// ถ้าเลือก "ไม่มี" → ยกเลิกข้ออื่น
+function onlyNone(){
+  if(document.getElementById("none").checked){
+    let risks = document.querySelectorAll(".risk");
+    risks.forEach(r => r.checked = false);
+  }
+}
+
+// ถ้าเลือกข้อเสี่ยง → ยกเลิก "ไม่มี"
+let risks = document.querySelectorAll(".risk");
+risks.forEach(r => {
+  r.onclick = function(){
+    document.getElementById("none").checked = false;
+  }
+});
+
+function checkRisk(){
+
+  let none = document.getElementById("none").checked;
+  let selected = document.querySelectorAll('.risk:checked').length;
+
+  if(none){
+    window.location.href = "prevent.html";   // ไปหน้าป้องกัน
+  }
+  else if(selected > 0){
+    window.location.href = "skin.html";      // ไปประเมินผิวหนัง
+  }
+  else{
+    alert("กรุณาเลือกอย่างน้อย 1 ข้อ");
+  }
+}
+
+</script>
+
+</body>
+</html>

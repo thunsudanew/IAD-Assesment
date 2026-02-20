@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ประเมินผิวหนัง</title>
+</head>
+
+<body style="font-family:Tahoma; padding:20px; text-align:center;">
+
+<h1>🩹 ประเมินระดับผิวหนัง</h1>
+
+<p>เลือกความรุนแรงของผิวหนังบริเวณ perineum / perianal</p>
+
+<select id="level" style="font-size:18px;">
+<option value="">-- กรุณาเลือกระดับ --</option>
+<option value="intact">ผิวหนังสมบูรณ์</option>
+<option value="level1">ระดับ 1 : ผิวหนังมีรอยแดง</option>
+<option value="level2">ระดับ 2 : ผิวหนังมีรอยถลอก</option>
+</select>
+
+<br><br>
+
+<button onclick="goCare()" style="font-size:20px;">ถัดไป</button>
+
+<script>
+function goCare(){
+
+  let level = document.getElementById("level").value;
+
+  if(level === ""){
+    alert("กรุณาเลือกระดับผิวหนัง");
+    return;
+  }
+
+  if(level === "intact"){
+    window.location.href = "care_intact.html";
+  }
+  else if(level === "level1"){
+    window.location.href = "care_level1.html";
+  }
+  else if(level === "level2"){
+    window.location.href = "care_level2.html";
+  }
+
+}
+</script>
+
+</body>
+</html>
