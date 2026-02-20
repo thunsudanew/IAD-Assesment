@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ระบบประเมิน IAD เด็ก</title>
+<title>IAD Assessment เด็ก</title>
 
 <style>
 body{font-family:Tahoma;background:#f5f6fa;}
@@ -28,8 +28,13 @@ input,select{
 .age-box{display:flex;gap:10px;}
 .age-box input{width:45%;}
 
-.risk-title{font-weight:bold;margin-top:15px;}
-.risk-list{text-align:left;line-height:1.8;}
+.group{
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:10px;
+  text-align:left;
+  margin-bottom:15px;
+}
 
 button{
   border:none;
@@ -42,14 +47,13 @@ button{
 
 .save{background:#27ae60;color:white;}
 .care{background:#3498db;color:white;}
-
 </style>
 
 <script>
 
-// 🔹 ใส่ URL จาก Apps Script ที่ Deploy แล้ว
-const scriptURL = "https://script.google.com/macros/s/AKfycbytxZLaSWoN2OdDkAH-BNrhKvQi1S6yrHWs1wVydhCph8GI0PjrjKKg0O5ASlsHD7USSA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbx1CqfE0LbnXIFnrtW6lVwLOyhFpomJjbmhwDLXxodexMsue_mria6RDS_kmJ7xiJQtKQ/exec";
 
+// ไม่มี → ปิดตัวเลือกอื่น
 function noRiskToggle(){
   let none=document.getElementById("noneRisk");
   let others=document.getElementsByClassName("risk");
@@ -60,12 +64,12 @@ function noRiskToggle(){
   }
 }
 
-// ✅ บันทึกข้อมูลลง Google Sheet
+// 💾 บันทึกข้อมูล
 function saveData(){
 
   let risks=[];
   document.querySelectorAll(".risk:checked")
-  .forEach(el=>risks.push(el.value));
+    .forEach(el=>risks.push(el.value));
 
   if(document.getElementById("noneRisk").checked)
     risks=["ไม่มี"];
@@ -88,16 +92,16 @@ function saveData(){
   .catch(err=>alert("❌ บันทึกไม่สำเร็จ"));
 }
 
-// ✅ ไปหน้าการดูแลตามระดับ
+// ➡️ ไปหน้าการดูแล
 function goCare(){
   let level=document.getElementById("skinLevel").value;
 
-  if(level=="1")
+  if(level=="ผิวหนังสมบูรณ์")
+    window.location.href="care_intact.html";
+  else if(level=="ระดับ 1 มีรอยแดง")
     window.location.href="care_level1.html";
-  else if(level=="2")
+  else if(level=="ระดับ 2 มีรอยถลอก")
     window.location.href="care_level2.html";
-  else if(level=="3")
-    window.location.href="care_level3.html";
 }
 
 </script>
@@ -108,10 +112,10 @@ function goCare(){
 
 <div class="box">
 
-<h1>👶 ระบบประเมิน IAD เด็ก</h1>
+<h2>👶 ระบบประเมิน IAD เด็ก</h2>
 
 HN:<br>
-<input id="hn" type="text">
+<input id="hn">
 
 เพศ:<br>
 <select id="sex">
@@ -131,9 +135,9 @@ HN:<br>
   <option>เคย</option>
 </select>
 
-<div class="risk-title">⚠️ ปัจจัยเสี่ยง</div>
+<h3>⚠️ ปัจจัยเสี่ยง</h3>
 
-<div class="risk-list">
+<div class="group">
 
 <label><input type="checkbox" id="noneRisk" onclick="noRiskToggle()"> ไม่มี</label><br>
 
@@ -149,15 +153,12 @@ HN:<br>
 <h3>🩹 ระดับผิวหนัง</h3>
 
 <select id="skinLevel">
-  <option value="1">ระดับ 1 รอยแดง</option>
-  <option value="2">ระดับ 2 มีรอยถลอก</option>
-  <option value="3">ระดับ 3 รุนแรง</option>
+  <option>ผิวหนังสมบูรณ์</option>
+  <option>ระดับ 1 มีรอยแดง</option>
+  <option>ระดับ 2 มีรอยถลอก</option>
 </select>
 
-<br>
-
 <button class="save" onclick="saveData()">💾 บันทึกข้อมูล</button>
-
 <button class="care" onclick="goCare()">➡️ ไปดูการดูแล</button>
 
 </div>
