@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>การดูแล — ผิวหนังสมบูรณ์</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+  font-family:Tahoma;
+  background:#ffeef5;
+  margin:0;
+}
+
+/* 🌸 ลายดอกไม้จางๆ มุมล่าง */
+body::after{
+  content:"🌸 🌼 🌸";
+  font-size:120px;
+  opacity:0.08;
+  position:fixed;
+  bottom:20px;
+  right:30px;
+  pointer-events:none;
+}
+
+/* กล่องหลัก */
+.box{
+  width:520px;
+  margin:40px auto;
+  background:white;
+  padding:28px;
+  border-radius:16px;
+  box-shadow:0 0 18px rgba(0,0,0,0.15);
+}
+
+/* ⭐ GOAL */
+.goal{
+  text-align:center;
+  background:#fff3cd;
+  border:3px solid #f1c40f;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:22px;
+  font-size:28px;
+  font-weight:bold;
+  color:#c0392b;
+}
+
+/* หัวข้อรอง */
+.subtitle{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+
+/* รายการการพยาบาล */
+ol{
+  font-size:18px;
+  line-height:1.8;
+  padding-left:22px;
+}
+
+/* ปุ่ม */
+button{
+  width:100%;
+  padding:14px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#3498db;
+  color:white;
+  cursor:pointer;
+  margin-top:22px;
+}
+
+button:hover{
+  background:#2980b9;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<!-- ⭐ GOAL -->
+<div class="goal">
+⚠️ Goal : ป้องกันไม่ให้เกิด IAD
+</div>
+
+<div class="subtitle">
+ให้การดูแลการพยาบาล ดังนี้
+</div>
+
+<ol>
+<li>ประเมินสภาพผิวหนังบริเวณ Perineum ทุก 8 ชั่วโมง</li>
+
+<li>ขจัดอุจจาระปัสสาวะด้วยสำลีชุบน้ำเปล่าและ/หรือ Skin cleanser  
+โดยไม่ขัดถูและซับให้แห้ง</li>
+
+<li>ใช้แผ่นรองซับแทนผ้าอ้อมสำเร็จรูป  
+และเปลี่ยนทุกครั้งที่มีการขับถ่าย</li>
+
+<li>ทาปิโตรเลียมออยท์เมน (วาสลีน) หรือ Skin barrier film  
+ทุกครั้งหลังทำความสะอาด</li>
+
+<li>หากผู้ป่วยถ่ายอุจจาระมีลักษณะเป็นน้ำเหลวและไม่เป็นก้อน  
+ทา 25% Zinc Oxide Ointment ทุกครั้งหลังทำความสะอาด</li>
+
+<li>ใส่ผ้าอ้อมสำเร็จรูป  
+และเปลี่ยนทุกครั้งที่ขับถ่าย</li>
+
+<li>ประเมินผิวหนังทุกครั้งที่มีกิจกรรมพยาบาลบริเวณ  
+Perineum / Perianal area  
+และบันทึกลง Nurse note</li>
+</ol>
+
+<button onclick="window.history.back()">⬅️ กลับไปหน้าประเมิน</button>
+
+</div>
+
+</body>
+</html>

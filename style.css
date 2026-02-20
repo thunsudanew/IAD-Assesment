@@ -1,0 +1,70 @@
+/* 🌸 พื้นหลังทั้งเว็บไซต์ */
+body{
+  font-family:Tahoma;
+  background:#ffeef5;
+  margin:0;
+}
+
+/* 🌼 ลายดอกไม้จางๆ มุมล่าง */
+body::after{
+  content:"🌸 🌼 🌸";
+  font-size:120px;
+  opacity:0.08;
+  position:fixed;
+  bottom:20px;
+  right:30px;
+  pointer-events:none;
+}
+
+/* 📦 กล่องเนื้อหา */
+.box{
+  width:460px;
+  margin:40px auto;
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 0 18px rgba(0,0,0,0.15);
+  text-align:center;
+}
+
+/* 🔹 input และ select */
+input,select{
+  width:95%;
+  padding:8px;
+  margin:6px 0 12px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+/* 👶 อายุ ปี/เดือน */
+.age-box{
+  display:flex;
+  gap:10px;
+}
+.age-box input{
+  width:45%;
+}
+
+/* ⚠️ กล่องปัจจัยเสี่ยง */
+.group{
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:10px;
+  text-align:left;
+  margin-bottom:15px;
+}
+
+/* 🔘 ปุ่ม */
+button{
+  border:none;
+  padding:12px 20px;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  margin:8px;
+}
+
+.save{background:#27ae60;color:white;}
+.care{background:#3498db;color:white;}
+.back{background:#95a5a6;color:white;}
