@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>IAD Assessment เด็ก</title>
-<link rel="stylesheet" href="style.css">
 
 <style>
-body{font-family:Tahoma;background:#f5f6fa;}
+body{font-family:Tahoma;background:#ffeef5;}
+
+/* 🌸 ลายดอกไม้จางๆ มุมล่าง */
+body::after{
+  content:"🌸 🌼 🌸";
+  font-size:120px;
+  opacity:0.08;
+  position:fixed;
+  bottom:20px;
+  right:30px;
+  pointer-events:none;
+}
 
 .box{
   width:420px;
