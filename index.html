@@ -51,7 +51,9 @@ button{
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbx1CqfE0LbnXIFnrtW6lVwLOyhFpomJjbmhwDLXxodexMsue_mria6RDS_kmJ7xiJQtKQ/exec";
+// ⭐ URL Web App ของคุณ
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbx1CqfE0LbnXIFnrtW6lVwLOyhFpomJjbmhwDLXxodexMsue_mria6RDS_kmJ7xiJQtKQ/exec";
 
 // ไม่มี → ปิดตัวเลือกอื่น
 function noRiskToggle(){
@@ -64,7 +66,7 @@ function noRiskToggle(){
   }
 }
 
-// 💾 บันทึกข้อมูล
+// 💾 บันทึกข้อมูลลง Google Sheet
 function saveData(){
 
   let risks=[];
@@ -86,20 +88,29 @@ function saveData(){
 
   fetch(scriptURL,{
     method:"POST",
-    body:JSON.stringify(data)
-  })
-  .then(res=>alert("✅ บันทึกข้อมูลเรียบร้อย"))
-  .catch(err=>alert("❌ บันทึกไม่สำเร็จ"));
+    mode:"no-cors",
+    headers:{
+      "Content-Type":"application/x-www-form-urlencoded"
+    },
+    body:Object.keys(data)
+      .map(k=>k+"="+encodeURIComponent(data[k]))
+      .join("&")
+  });
+
+  alert("✅ ส่งข้อมูลแล้ว (ตรวจใน Google Sheet)");
 }
 
-// ➡️ ไปหน้าการดูแล
+// ➡️ ไปหน้าการดูแลตามระดับ
 function goCare(){
+
   let level=document.getElementById("skinLevel").value;
 
   if(level=="ผิวหนังสมบูรณ์")
     window.location.href="care_intact.html";
+
   else if(level=="ระดับ 1 มีรอยแดง")
     window.location.href="care_level1.html";
+
   else if(level=="ระดับ 2 มีรอยถลอก")
     window.location.href="care_level2.html";
 }
@@ -159,6 +170,7 @@ HN:<br>
 </select>
 
 <button class="save" onclick="saveData()">💾 บันทึกข้อมูล</button>
+
 <button class="care" onclick="goCare()">➡️ ไปดูการดูแล</button>
 
 </div>
