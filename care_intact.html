@@ -117,6 +117,44 @@ button{
   cursor:pointer;
   margin-top:22px;
 }
+/* 🧴 กล่องการดูแลผิวหนัง */
+.care-box{
+  background:#fff;
+  border-radius:14px;
+  padding:22px;
+  margin-top:22px;
+  box-shadow:0 0 14px rgba(0,0,0,0.12);
+  border:2px solid #f3c6d6;
+}
+
+.care-title{
+  text-align:center;
+  font-size:26px;
+  font-weight:bold;
+  color:#c2185b;
+  margin-bottom:12px;
+}
+
+.care-list{
+  font-size:18px;
+  line-height:1.8;
+  padding-left:22px;
+}
+
+.care-list li{
+  margin-bottom:14px;
+}
+
+/* ⭐ คำแนะนำเด่น */
+.care-note{
+  background:#ffe8ef;
+  border-left:6px solid #e91e63;
+  padding:14px;
+  font-size:19px;
+  font-weight:bold;
+  margin-top:14px;
+  border-radius:8px;
+}
 
 button:hover{
   background:#2980b9;
@@ -184,11 +222,50 @@ button:hover{
 เพราะจะเพิ่มการอักเสบและเสี่ยงต่อการเกิดแผลกดทับ
 </div>
 
+<!-- 🧴 กล่องที่ 3 : การดูแลผิวหนัง -->
+<div class="care-box">
+
+  <h3 class="care-title">🧴 การดูแลผิวหนัง</h3>
+
+  <p>
+  ปัจจุบันมีผลิตภัณฑ์เคลือบปกป้องผิวหนังหลายกลุ่ม ดังนี้
+  </p>
+
+  <ol class="care-list">
+
+    <li>
+      <b>ผลิตภัณฑ์กลุ่มปิโตรเลียมเจล</b> เช่น วาสลีน  
+      มีลักษณะโปร่งใส ประเมินผิวหนังได้ง่าย สามารถเคลือบปกป้องผิวหนังได้  
+      แต่ผลิตภัณฑ์ไม่ติดทนผิวหนัง มีความเหนียวเหนอะหนะ และอาจอุดตันรูขุมขน  
+      <br>
+      <b>จึงควรทาบาง ๆ ใช้กับผิวหนังปกติเพื่อป้องกันแผล IAD</b>
+    </li>
+
+    <li>
+      <b>ผลิตภัณฑ์กลุ่มครีมสีขาวหรือครีมขี้ผึ้ง (Zinc Oxide)</b>  
+      ช่วยลดการระคายเคือง ใช้กับผิวหนังที่ถูกทำลายได้  
+      เนื่องจากมีฤทธิ์ในการฆ่าเชื้อ  
+      แต่มีความเหนียวหนืด เช็ดออกยาก และมีสีขาวทึบ  
+      ทำให้ประเมินผิวหนังได้ยาก
+    </li>
+
+    <li>
+      <b>ผลิตภัณฑ์กลุ่มพอลิเมอร์เคลือบผิว (Acrylate Terpolymer)</b>  
+      <b>ช่วยลดการระคายเคือง ติดทนผิวหนังดี และมีลักษณะโปร่งแสง ประเมินผิวหนังได้ง่าย</b>  
+      แต่เนื่องจากมีคุณสมบัติเกาะติดผิวหนัง  
+      จึงอาจทำให้อุดตันรูขุมขนได้
+    </li>
+
+  </ol>
+
+  <div class="care-note">
+    ⭐ สามารถเลือกใช้ผลิตภัณฑ์ได้ตามความเหมาะสมกับสภาพผิวหนังของผู้ป่วย
+  </div>
+
 </div>
 
 <button onclick="history.back()">🏠 กลับหน้าประเมิน</button>
 
-</div>
 
 </body>
 </html>
